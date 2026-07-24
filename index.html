@@ -3,76 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canlı Görüntülü Sohbet Odaları | Kameralı Chat Platformları</title>
-    <meta name="description" content="Ücretsiz, üyeliksiz canlı görüntülü sohbet ve kameralı chat odaları. Kesintisiz WebRTC altyapısıyla anında sohbet başlatın.">
+    
+    <!-- SEO Meta Etiketleri -->
+    <title>Canlı Görüntülü Sohbet & Kameralı Chat Odaları | Omegle TV Alternatifi</title>
+    <meta name="description" content="Ücretsiz, üyeliksiz ve kayıt olmadan canlı görüntülü sohbet başlatın. WebRTC teknolojisiyle yüksek kaliteli, takılmasız ve güvenli kameralı chat odaları.">
+    <meta name="keywords" content="görüntülü sohbet, canlı chat, kameralı sohbet, omegle tv, rastgele chat, sohbet odaları, web chat">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kameralisohbet.github.io/">
+
+    <!-- Open Graph (Sosyal Medya & VK/Facebook Paylaşım Görünümü) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Canlı Görüntülü Sohbet & Kameralı Chat Odaları">
+    <meta property="og:description" content="Kesintisiz ve güvenli canlı görüntülü sohbetin adresi. Hemen tek tıkla bağlanın!">
+    <meta property="og:url" content="https://kameralisohbet.github.io/">
+    <meta property="og:image" content="https://kameralisohbet.github.io/cover.jpg">
+
+    <!-- CSS Stilleri -->
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-            color: #ffffff;
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-badge {
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Hero Bölümü */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto 40px;
+            padding: 0 20px;
             text-align: center;
         }
-        .container {
-            max-width: 800px;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+
+        .hero h1 span {
             background: linear-gradient(to right, #38bdf8, #818cf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 30px;
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
-        .btn-grid {
+
+        /* Platform Kartları Grid Structure */
+        .platforms-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            width: 100%;
         }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
         .btn {
-            display: block;
-            padding: 15px 20px;
-            background: linear-gradient(45deg, #0284c7, #6366f1);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 14px 20px;
             border-radius: 12px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: opacity 0.2s ease;
         }
+
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+            opacity: 0.9;
+        }
+
+        /* Özellikler (Features) */
+        .features {
+            background: rgba(15, 23, 42, 0.6);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 20px;
+            margin-bottom: 60px;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-box h3 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* SSS (FAQ) Bölümü */
+        .faq {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        /* Responsive Uyum */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
         }
     </style>
+
+    <!-- Schema.org (Google İçin Yapısal Veri) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kameralı Sohbet Odaları",
+      "url": "https://kameralisohbet.github.io/",
+      "description": "Canlı görüntülü sohbet ve kameralı chat platformları ağ yönlendirme merkezi."
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Canlı Görüntülü Sohbet Odaları</h1>
-        <p>Kesintisiz WebRTC teknolojisiyle güçlendirilmiş, üyeliksiz ve donmasız kameralı sohbet ağımıza hoş geldiniz. Aşağıdaki platformlarımız üzerinden anında canlı sohbete katılabilirsiniz.</p>
-        
-        <div class="btn-grid">
-            <a href="https://www.sohbete.com.tr" class="btn" target="_blank">Sohbete.com.tr'ye Katıl</a>
-            <a href="https://omegletv.tr" class="btn" target="_blank">OmegleTV.tr Giriş</a>
-            <a href="https://goruntuluchat.tr" class="btn" target="_blank">GoruntuluChat.tr Başlat</a>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            📹 KameralıSohbet
         </div>
-    </div>
+        <div class="live-badge">● CANLI SUNUCULAR AKTİF</div>
+    </header>
+
+    <!-- Hero Bölümü -->
+    <section class="hero">
+        <h1>Kesintisiz <span>Canlı Görüntülü Sohbet</span> Deneyimi</h1>
+        <p>Üyeliksiz, donmasız ve WebRTC altyapısı ile yüksek çözünürlüklü kameralı chat odalarına anında katılın. Yeni insanlarla tanışmaya hemen başlayın.</p>
+    </section>
+
+    <!-- Platform Giriş Kartları -->
+    <main class="platforms-grid">
+        <!-- Kart 1: Sohbete.com.tr -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2 class="card-title">Sohbete.com.tr</h2>
+                    <span style="color: var(--accent); font-weight: bold; font-size: 0.85rem;">Ana Sunucu</span>
+                </div>
+                <p class="card-desc">Türkiye'nin en popüler canlı görüntülü ve sesli sohbet platformu. Hızlı eşleşme ve yüksek kalite.</p>
+            </div>
+            <a href="https://www.sohbete.com.tr" class="btn" target="_blank" rel="noopener">Sohbete Bağlan 🔥</a>
+        </article>
+
+        <!-- Kart 2: OmegleTV.tr -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2 class="card-title">OmegleTV.tr</h2>
+                    <span style="color: var(--secondary); font-weight: bold; font-size: 0.85rem;">Rastgele Chat</span>
+                </div>
+                <p class="card-desc">Klasik Omegle ruhunu yaşatan rastgele görüntülü eşleşme odaları. Sıra beklemeden anında görüntülü sohbet.</p>
+            </div>
+            <a href="https://omegletv.tr" class="btn" target="_blank" rel="noopener">Omegle TV Başlat 🎥</a>
+        </article>
+
+        <!-- Kart 3: GoruntuluChat.tr -->
+        <article class="card">
+            <div>
+                <div class="card-header">
+                    <h2 class="card-title">GoruntuluChat.tr</h2>
+                    <span style="color: #a855f7; font-weight: bold; font-size: 0.85rem;">Mobil Uyumlu</span>
+                </div>
+                <p class="card-desc">Mobil cihazlar ve tabletler için optimize edilmiş, düşük bant genişliğinde bile akıcı çalışan chat altyapısı.</p>
+            </div>
+            <a href="https://goruntuluchat.tr" class="btn" target="_blank" rel="noopener">Chate Katıl 📱</a>
+        </article>
+    </main>
+
+    <!-- Özellikler -->
+    <section class="features">
+        <div class="features-container">
+            <div class="feature-box">
+                <div style="font-size: 2rem;">⚡</div>
+                <h3>Düşük Gecikme</h3>
+                <p>WebRTC Peer-to-Peer mimarisi ile takılmasız ve anlık görüntü aktarımı.</p>
+            </div>
+            <div class="feature-box">
+                <div style="font-size: 2rem;">🔒</div>
+                <h3>%100 Gizlilik</h3>
+                <p>Kişisel bilgi veya kayıt gerekmeden tamamen anonim sohbet edin.</p>
+            </div>
+            <div class="feature-box">
+                <div style="font-size: 2rem;">📱</div>
+                <h3>Tam Mobil Uyum</h3>
+                <p>İster iOS ister Android cihazlardan uygulama indirmeden tarayıcı üzerinden erişin.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sıkça Sorulan Sorular (SEO Odaklı Metinler) -->
+    <section class="faq">
+        <h2>Sıkça Sorulan Sorular</h2>
+        
+        <div class="faq-item">
+            <h3>Canlı görüntülü sohbet ücretsiz mi?</h3>
+            <p>Evet, ağımızda yer alan Sohbete.com.tr, OmegleTV.tr ve GoruntuluChat.tr platformlarının tamamı tamamen ücretsiz ve üyeliksizdir.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Kameralı sohbet başlatmak için uygulama indirmem gerekir mi?</h3>
+            <p>Hayır, herhangi bir uygulama veya eklenti indirmeden Chrome, Safari, Edge veya Firefox gibi standart web tarayıcılarınız üzerinden anında bağlanabilirsiniz.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Kameralı Sohbet Ağı. Tüm hakları saklıdır. | Powered by <a href="https://github.com/kameralisohbet" target="_blank" rel="noopener">Kameralı Sohbet GitHub</a></p>
+    </footer>
+
 </body>
 </html>
